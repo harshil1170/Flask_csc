@@ -1,1 +1,9 @@
-flask==3.1.1
+# In your local project directory
+echo "Flask==2.3.3
+gunicorn==21.2.0
+Werkzeug==2.3.7" > requirements.txt
+
+# Add to git
+git add requirements.txt
+git commit -m "Add requirements.txt"
+git push origin main
