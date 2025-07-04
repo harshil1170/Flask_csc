@@ -8,7 +8,7 @@ def home():
     return render_template("Home.html")
     
 print("Current working directory:", os.getcwd())
-print("Templates folder contents:", os.listdir('home.html'))
+print("Templates folder contents:", os.listdir('Home.html'))
 
 if __name__ == '__main__':
     app.run(debug=True)
