@@ -1,11 +1,10 @@
 from flask import Flask, render_template
-from vercel_wsgi import handle_request
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('Home.html')
 
-def handler(environ, start_response):
-    return handle_request(app, environ, start_response)
+if __name__ == '__main__':
+    app.run(debug=True)
