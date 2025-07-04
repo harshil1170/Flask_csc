@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>First Page</title>
+  <style>
+    /* Reset some default styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    /* Header styling with gradient background */
+    header {
+      background: linear-gradient(135deg, #ffa585, #ffeda0);
+      color: white;
+      padding: 20px 0 0 0;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header-image-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .header-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 1.2s ease;
+    }
+
+    .header-image.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 1s ease;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    h1.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      font-weight: 300;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 1s ease 0.3s;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .subtitle.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .navbar {
+      background: linear-gradient(135deg, #ffeda0, #ffa585);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 1s ease 0.6s;
+    }
+
+    .navbar.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-item {
+      margin: 0;
+      animation: fadeInUp 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    .nav-item:nth-child(1) { animation-delay: 0.1s; }
+    .nav-item:nth-child(2) { animation-delay: 0.2s; }
+    .nav-item:nth-child(3) { animation-delay: 0.3s; }
+    .nav-item:nth-child(4) { animation-delay: 0.4s; }
+    .nav-item:nth-child(5) { animation-delay: 0.5s; }
+
+    .nav-link {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .nav-link:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .nav-link:hover:before {
+      left: 100%;
+    }
+
+    .nav-link:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .nav-link:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
+      .nav-link {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-link {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+      }
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    section {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+    }
+
+    section.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      color: #ff8a50;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ffeda0;
+      padding-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #ffeda0, #ffa585);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    footer.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Icon Sections Styling */
+    .icon-sections-main-container {
+      background-color: #f4f4f4;
+      padding: 60px 20px;
+    }
+
+    .icon-sections-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .icon-section {
+      background: linear-gradient(135deg, #ffffff, #fff8f0);
+      padding: 40px 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      border: 1px solid rgba(255, 165, 133, 0.1);
+    }
+
+    .icon-section.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .icon-section:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(255, 165, 133, 0.2);
+      border-color: rgba(255, 165, 133, 0.3);
+    }
+
+    .icon-wrapper {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .icon-image {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(255, 165, 133, 0.3));
+      transition: transform 0.3s ease;
+    }
+
+    .icon-section:hover .icon-image {
+      transform: scale(1.1) rotate(5deg);
+      filter: drop-shadow(0 6px 12px rgba(255, 165, 133, 0.4));
+    }
+
+    .icon-section h3 {
+      color: #ff8a50;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .icon-section:hover h3 {
+      color: #ff6b1a;
+      transform: translateY(-2px);
+    }
+
+    .icon-section p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 0;
+      transition: all 0.3s ease;
+    }
+
+    .icon-section:hover p {
+      color: #555;
+    }
+
+    /* Associated With Section */
+    .associated-section {
+      background: linear-gradient(135deg, #fff8f0, #ffffff);
+      padding: 40px 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      border: 1px solid rgba(255, 165, 133, 0.1);
+    }
+
+    .associated-section.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .associated-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .associated-image {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin: 0 auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(255, 165, 133, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .associated-image:hover {
+      transform: scale(1.1);
+    }
+
+    /* Contact and Follow Us Sections */
+    .mini-sections {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .mini-section {
+      background: linear-gradient(135deg, #ffffff, #fff8f0);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 165, 133, 0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+    }
+
+    .mini-section.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mini-section h3 {
+      color: #ff8a50;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .contact-info {
+      list-style: none;
+      padding: 0;
+    }
+
+    .contact-info li {
+      margin-bottom: 10px;
+      padding: 5px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .contact-info li:last-child {
+      border-bottom: none;
+    }
+
+    .contact-info strong {
+      color: #ff6b1a;
+      display: inline-block;
+      width: 80px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .social-links a {
+      color: #ff8a50;
+      font-size: 1.2rem;
+      text-decoration: none;
+      padding: 8px;
+      border-radius: 50%;
+      background: rgba(255, 165, 133, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: rgba(255, 165, 133, 0.2);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .icon-sections-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .icon-section {
+        padding: 30px 20px;
+      }
+
+      .icon-image {
+        width: 48px;
+        height: 48px;
+      }
+
+      .associated-images {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .mini-sections {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <div class="header-image-container">
+      <img src="/static/image/icon.jpeg" alt="Header Image" class="header-image" id="headerImg" onerror="this.onerror=null; this.src='https://via.placeholder.com/1600x640'; this.style.border='1px dashed red';">
+    </div>
+    <h1 id="heading">Welcome to CSC PALANPUR</h1>
+    <p class="subtitle" id="subtitle">Your journey starts here</p>
+  </div>
+</header>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <ul class="nav-menu" id="navMenu">
+      <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+      <li class="nav-item"><a href="#projects" class="nav-link">CSC Projects</a></li>
+      <li class="nav-item"><a href="#media" class="nav-link">Flagship Program</a></li>
+      <li class="nav-item"><a href="#news" class="nav-link">Media</a></li>
+      <li class="nav-item"><a href="#contact" class="nav-link">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="icon-sections-main-container">
+  <div class="icon-sections-container">
+    <div class="icon-section" id="iconSection1">
+      <div class="icon-wrapper">
+        <img class="icon-image" src="https://gujewgiafizzapkwwvfh.supabase.co/storage/v1/object/sign/private-user-uploads/CSC%20Logo.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jMWQxNDMzYi0zMTU3LTQ5YWUtOTY5OS0zYTA1YTM4OTVjNTQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcml2YXRlLXVzZXItdXBsb2Fkcy9DU0MgTG9nby5qcGVnIiwiaWF0IjoxNzUxNTM0NDAzLCJleHAiOjIwNjY4OTQ0MDN9.677VwEN44M36u0tve3G9uOR3U-MAHIhO0CxreZjd7Mc" alt="Science Icon">
+      </div>
+      <h3>District Community Science Center</h3>
+      <p>Explore cutting-edge research projects and participate in scientific investigations that contribute to knowledge advancement.</p>
+    </div>
+
+    <div class="icon-section" id="iconSection2">
+      <div class="icon-wrapper">
+        <img class="icon-image" src="https://gujewgiafizzapkwwvfh.supabase.co/storage/v1/object/sign/private-user-uploads/Ip%20lab.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jMWQxNDMzYi0zMTU3LTQ5YWUtOTY5OS0zYTA1YTM4OTVjNTQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcml2YXRlLXVzZXItdXBsb2Fkcy9JcCBsYWIuanBlZyIsImlhdCI6MTc1MTUzNTI3OCwiZXhwIjoyMDY2ODk1Mjc4fQ.J_X-_PAI5CabHXIcVl3Rd0HkosPyhuSw_KfdjSt5pMY" alt="Graduation Icon">
+      </div>
+      <h3>IP & Innovation Lab, Banaskantha</h3>
+      <p>Join our comprehensive educational initiatives designed to enhance scientific literacy and inspire future scientists.</p>
+    </div>
+
+    <div class="icon-section" id="iconSection3">
+      <div class="icon-wrapper">
+        <img class="icon-image" src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Star Icon">
+      </div>
+      <h3>NIB Junior Science Club</h3>
+      <p>Connect with local communities through science exhibitions, workshops, and awareness programs that make science accessible to all.</p>
+    </div>
+  </div>
+</div>
+
+<main>
+  <section id="section1">
+    <h2>About Us</h2>
+    <p>Lorem ipsum dolor sit amet...</p>
+  </section>
+
+  <section id="section2">
+    <h2>Upcoming Activities</h2>
+    <p>Stay updated with our latest scientific activities...</p>
+  </section>
+
+  <section id="associatedSection" class="associated-section">
+    <h2>Associated With</h2>
+    <div class="associated-images">
+      <img src="https://gujewgiafizzapkwwvfh.supabase.co/storage/v1/object/sign/private-user-uploads/CSC%20Logo.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jMWQxNDMzYi0zMTU3LTQ5YWUtOTY5OS0zYTA1YTM4OTVjNTQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcml2YXRlLXVzZXItdXBsb2Fkcy9DU0MgTG9nby5qcGVnIiwiaWF0IjoxNzUxNTM0NDAzLCJleHAiOjIwNjY4OTQ0MDN9.677VwEN44M36u0tve3G9uOR3U-MAHIhO0CxreZjd7Mc" alt="Partner 1" class="associated-image">
+      <img src="https://gujewgiafizzapkwwvfh.supabase.co/storage/v1/object/sign/private-user-uploads/Ip%20lab.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jMWQxNDMzYi0zMTU3LTQ5YWUtOTY5OS0zYTA1YTM4OTVjNTQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcml2YXRlLXVzZXItdXBsb2Fkcy9JcCBsYWIuanBlZyIsImlhdCI6MTc1MTUzNTI3OCwiZXhwIjoyMDY2ODk1Mjc4fQ.J_X-_PAI5CabHXIcVl3Rd0HkosPyhuSw_KfdjSt5pMY" alt="Partner 2" class="associated-image">
+      <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="Partner 3" class="associated-image">
+      <img src="https://gujewgiafizzapkwwvfh.supabase.co/storage/v1/object/sign/private-user-uploads/CSC%20Logo.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9jMWQxNDMzYi0zMTU3LTQ5YWUtOTY5OS0zYTA1YTM4OTVjNTQiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwcml2YXRlLXVzZXItdXBsb2Fkcy9DU0MgTG9nby5qcGVnIiwiaWF0IjoxNzUxNTM0NDAzLCJleHAiOjIwNjY4OTQ0MDN9.677VwEN44M36u0tve3G9uOR3U-MAHIhO0CxreZjd7Mc" alt="Partner 4" class="associated-image">
+    </div>
+  </section>
+
+  <div class="mini-sections">
+    <div class="mini-section" id="contactSection">
+      <h3>Contact Us</h3>
+      <ul class="contact-info">
+        <li><strong>Address:</strong> District Community Science Center, Palanpur, Gujarat</li>
+        <li><strong>Mobile:</strong> +91 98765 43210</li>
+        <li><strong>Email:</strong> info@cscpalanpur.org</li>
+      </ul>
+    </div>
+
+    <div class="mini-section" id="followSection">
+      <h3>Follow Us</h3>
+      <div class="social-links">
+        <a href="#" title="Facebook">📘</a>
+        <a href="#" title="Twitter">🐦</a>
+        <a href="#" title="Instagram">📷</a>
+        <a href="#" title="LinkedIn">💼</a>
+        <a href="#" title="YouTube">📺</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer id="footer">
+  <p>&copy; 2025 CSC Palanpur. All Rights Reserved.</p>
+</footer>
+
+<script>
+  window.onload = function() {
+    setTimeout(() => document.getElementById("headerImg").classList.add("animate"), 100);
+    setTimeout(() => document.getElementById("heading").classList.add("animate"), 500);
+    setTimeout(() => document.getElementById("subtitle").classList.add("animate"), 800);
+    setTimeout(() => document.getElementById("navbar").classList.add("animate"), 1200);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(document.getElementById("section1"));
+    observer.observe(document.getElementById("section2"));
+    observer.observe(document.getElementById("associatedSection"));
+    observer.observe(document.getElementById("contactSection"));
+    observer.observe(document.getElementById("followSection"));
+    observer.observe(document.getElementById("iconSection1"));
+    observer.observe(document.getElementById("iconSection2"));
+    observer.observe(document.getElementById("iconSection3"));
+    observer.observe(document.getElementById("footer"));
+  };
+
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 100) {
+      navbar.style.background = 'linear-gradient(135deg, rgba(255, 237, 160, 0.95), rgba(255, 165, 133, 0.95))';
+      navbar.style.backdropFilter = 'blur(10px)';
+    } else {
+      navbar.style.background = 'linear-gradient(135deg, #ffeda0, #ffa585)';
+      navbar.style.backdropFilter = 'none';
+    }
+  });
+</script>
+</body>
+</html>
